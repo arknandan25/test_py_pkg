@@ -12,6 +12,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=["requests", "jinja2"],
+    install_requires=["requests", "jinja2", "MarkupSafe"],
     entry_points={"console_scripts": ["showz = src.parser:main"]},
 )
