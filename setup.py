@@ -7,6 +7,7 @@ setup(
     url="https://github.com/arknandan25/test_py_pkg",
     description="An application that gets your favourite movie info from CLI!",
     packages=find_packages(),
+    include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

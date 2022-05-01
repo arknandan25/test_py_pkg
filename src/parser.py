@@ -2,6 +2,9 @@ import argparse
 from src.get_show_info import show_information
 
 
+
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description='Show Tracker')
     subparser = parser.add_subparsers(dest="sub_parser")
@@ -17,6 +20,7 @@ def main() -> None:
 
     # parse the arguments and call the function specified
     args = parser.parse_args()
+
     args.func(args)
 
 
