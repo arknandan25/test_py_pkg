@@ -1,0 +1,41 @@
+name: CI/CD Pipeline for Showz Python CLI Distribution
+
+# Define when the action workflow will be run
+# In this case: on a push/pull to/from the repository branch: `master`
+on:
+    push:
+    branches: [ master ]
+    pull_request:
+    branches: [ master ]
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+# Sequential execution of linux commands to be executed for building, testing, and publishing package
+jobs:
+    # name of the job is `build-and-publish` (Only one job has been setup here)
+    build-and-publish:
+    name: Build and publish Python distribution
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@master
+        - name: Initialize Python 3.7
+            uses: actions/setup-python@v1
+            with:
+                python-version: 3.7
+        - name: Install dependencies
+            run: |
+                python3 -m pip install --upgrade pip
+                pip install flake8
+        - name: Linting with flake8
+            run: |
+                # stop the build if there are Python syntax errors or undefined names
+                flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                # exit-zero treats all errors as warnings.
+                flake8 . --count --exit-zero --max-complexity=10 --max-line-length=135 --statistics
+        - name: Build binary wheel (.whl) and a source tarball (.tar.gz)
+            run: python3 setup.py sdist
+        - name: Publish distribution to Test PyPI (CD)
+            uses: pypa/gh-action-pypi-publish@master
+            with:
+                password: ${{ secrets.showz }}
+                repository_url: https://test.pypi.org/legacy/
