@@ -42,8 +42,9 @@ jobs:
           # Install the package from setup.py
           python3 setup.py install
 
-      -name: Build/Create wheel and tar.gz files
-       run: python3 setup.py sdist
+      # Build Python Package
+      - name: Build/Create wheel and tar.gz files
+        run: python3 setup.py sdist
 
       # Upload to TestPyPI
       - name: Upload to TestPyPI
