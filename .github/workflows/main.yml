@@ -25,31 +25,31 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Sets up python3
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-
-      # Installs and upgrades pip, installs other dependencies and installs the package from setup.py
-      - name: "Installs and upgrades pip, installs other dependencies and installs the package from setup.py"
-        run: |
-          # Upgrade pip, else all other following commands will fail
-          python3 -m pip install --upgrade pip
-          # Install build dependencies i.e twine
-          python3 -m pip install setuptools wheel twine
-          # Install the package from setup.py
-          python3 setup.py install
-
-      # Build Python Package
-      - name: Build/Create wheel and tar.gz files
-        run: python3 setup.py sdist
-
-      # Upload to TestPyPI
-      - name: Upload to TestPyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          password: ${{ secrets.showz }}
-          repository_url: https://test.pypi.org/legacy/
+#      # Sets up python3
+#      - uses: actions/setup-python@v2
+#        with:
+#          python-version: 3.7
+#
+#      # Installs and upgrades pip, installs other dependencies and installs the package from setup.py
+#      - name: "Installs and upgrades pip, installs other dependencies and installs the package from setup.py"
+#        run: |
+#          # Upgrade pip, else all other following commands will fail
+#          python3 -m pip install --upgrade pip
+#          # Install build dependencies i.e twine
+#          python3 -m pip install setuptools wheel twine
+#          # Install the package from setup.py
+#          python3 setup.py install
+#
+#      # Build Python Package
+#      - name: Build/Create wheel and tar.gz files
+#        run: python3 setup.py sdist
+#
+#      # Upload to TestPyPI
+#      - name: Upload to TestPyPI
+#        uses: pypa/gh-action-pypi-publish@master
+#        with:
+#          password: ${{ secrets.showz }}
+#          repository_url: https://test.pypi.org/legacy/
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
