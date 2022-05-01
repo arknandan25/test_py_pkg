@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CI-CD
 
 # Controls when the action will run.
 on:
@@ -46,11 +46,15 @@ jobs:
       - name: Build and Upload to TestPyPI
         run: |
           python3 setup.py sdist
-          python3 -m twine upload --repository testpypi dist/*
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.showz }}
-          TWINE_REPOSITORY: testpypi
+#          python3 -m twine upload --repository testpypi dist/*
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.showz }}
+          repository_url: https://test.pypi.org/legacy/
+#        env:
+#          TWINE_USERNAME: __token__
+#          TWINE_PASSWORD: ${{ secrets.showz }}
+#          TWINE_REPOSITORY: testpypi
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
