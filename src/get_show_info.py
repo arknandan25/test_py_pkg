@@ -29,7 +29,7 @@ def show_information(args) -> None:
         sys.exit(0)
 
     top_movie_data = response.json()[0]
-    template = JINJA_ENVIRONMENT.get_template("web_template.html")
+    template = JINJA_ENVIRONMENT.get_template(f"{PWD}/web_template.html")
     rendered_html = template.render(
             name=top_movie_data['show']['name'],
             genre=get_genre(top_movie_data['show'].get('genres')),
