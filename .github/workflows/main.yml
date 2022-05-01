@@ -4,11 +4,11 @@ name: CI-CD
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ mainline ]
-  pull_request:
-    branches: [ mainline ]
+  # Triggers the workflow on creation of a release
+  # this means when we manually create a new release (updating in setup.py to a newer ver x.x.y)
+  # the workflow will trigger the build and upload to testpypi
+  release:
+    types: [ created ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

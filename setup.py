@@ -2,9 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name="showz",
-    version="0.0.2",
+    version="0.0.3",
     author="Ark Chauhan",
-    # url="https://bit.ly/edeediong-resume",
+    url="https://github.com/arknandan25/test_py_pkg",
     description="An application that gets your favourite movie info from CLI!",
     packages=find_packages(),
     classifiers=[
