@@ -6,11 +6,13 @@ from src import JINJA_ENVIRONMENT, PWD, URL, WARNING
 
 
 def get_genre(genre_list: List = None) -> str:
+    """Get movie genre information"""
     genre = ", ".join(g for g in genre_list) if genre_list else "Unknown Genre"
     return genre
 
 
 def get_summary_formatted(summary_str: str) -> str:
+    """Get movie summary formatted"""
     return summary_str.replace("<p>", "").replace("</p>", "")
 
 
