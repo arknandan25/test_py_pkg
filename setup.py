@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="showz",
-    version="0.0.3",
+    version="0.0.4",
     author="Ark Chauhan",
     url="https://github.com/arknandan25/test_py_pkg",
     description="An application that gets your favourite movie info from CLI!",
