@@ -25,6 +25,33 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # Sets up python3
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      # Installs and upgrades pip, installs other dependencies and installs the package from setup.py
+      - name: "Installs and upgrades pip, installs other dependencies and installs the package from setup.py"
+        run: |
+          # Upgrade pip, else all other following commands will fail
+          python3 -m pip install --upgrade pip
+          # Install build dependencies i.e twine
+          python3 -m pip install setuptools wheel twine
+          # If requirements.txt exists, install from it
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          # Install the package from setup.py
+          python3 setup.py install
+
+      # Upload to TestPyPI
+      - name: Build and Upload to TestPyPI
+        run: |
+          python3 setup.py sdist bdist_wheel
+          python3 -m twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.showz }}
+          TWINE_REPOSITORY: testpypi
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
