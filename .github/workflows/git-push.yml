@@ -26,11 +26,9 @@ jobs:
         python3 -m pip install flake8 pytest isort
     - name: Run isort
       run: |
-        cd src/
-        isort --recursive .
+        isort  --recursive src/
     - name: Run linting with flake8
       run: |
-        cd -
         flake8 src test
     - name: Run Unit tests with pytest
       run: |
