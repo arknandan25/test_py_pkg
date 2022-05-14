@@ -16,6 +16,8 @@ def get_genre(genre_list: List = None) -> str:
 def get_summary_formatted(summary_str: str) -> str:
     """Get movie summary formatted"""
     return summary_str.replace("<p>", "").replace("</p>", "").replace("<b>", "").replace("</b>", "")
+
+
 def show_information(args) -> None:
     """Render a web page with movie/show information
 
