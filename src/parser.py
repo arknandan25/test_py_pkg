@@ -1,8 +1,6 @@
 import argparse
+
 from src.get_show_info import show_information
-
-
-
 
 
 def main() -> None:
@@ -20,7 +18,8 @@ def main() -> None:
 
     # parse the arguments and call the function specified
     args = parser.parse_args()
-
+    import ipdb
+    ipdb.set_trace()
     args.func(args)
 
 

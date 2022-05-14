@@ -1,4 +1,7 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
+
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
 
 setup(
     name="showz",
@@ -6,6 +9,7 @@ setup(
     author="Ark Chauhan",
     url="https://github.com/arknandan25/test_py_pkg",
     description="An application that gets your favourite movie info from CLI!",
+    long_description=long_description,
     packages=find_packages(),
     include_package_data=True,
     classifiers=[
